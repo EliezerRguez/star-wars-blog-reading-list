@@ -1,15 +1,44 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useEffect, useState } from "react";
 import "../../styles/home.scss";
+import CarouselCardCharacter from "../component/CarouselCardCharacter.js";
+import CarouselCardVehicle from "../component/CarouselCardVehicle.js";
+import CarouselCardPlanet from "../component/CarouselCardPlanet.js";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
-);
+export const Home = () => {
+	const [planets, setPlanet] = useState([]);
+	const [people, setPeople] = useState([]);
+	const [vehicles, setVehicles] = useState([]);
+
+	async function getElement(element, set) {
+		const response = await fetch(`https://www.swapi.tech/api/${element}`);
+
+		const responseJson = await response.json();
+		set(responseJson.results);
+	}
+
+	useEffect(() => {
+		getElement("planets", setPlanet);
+		getElement("people", setPeople);
+		getElement("starships", setVehicles);
+	}, []);
+
+	return (
+		<div className="container mt-5">
+			<h2 className="text-danger">Characters</h2>
+
+			<div className="row mb-4">
+				<CarouselCardCharacter people={people} />
+			</div>
+			<h2 className="text-danger">Planet</h2>
+
+			<div className="row mb-4">
+				<CarouselCardPlanet planets={planets} />
+			</div>
+			<h2 className="text-danger">Vehicles</h2>
+
+			<div className="row mb-4">
+				<CarouselCardVehicle vehicles={vehicles} />
+			</div>
+		</div>
+	);
+};
