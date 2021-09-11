@@ -19,7 +19,7 @@ const CardVehicle = ({ ship }) => {
 	return (
 		<div className="col-4" key={ship.uid}>
 			<div className="card">
-				<img src="..." className="card-img-top" alt="..." />
+				<img src="https://via.placeholder.com/400x200" className="card-img-top" alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">{ship.name}</h5>
 					<p className="card-text">Class: {vehicle.starship_class}</p>

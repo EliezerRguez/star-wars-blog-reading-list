@@ -19,7 +19,7 @@ const CardPlanet = ({ planet }) => {
 	return (
 		<div className="col-4" key={planet.uid}>
 			<div className="card">
-				<img src="..." className="card-img-top" alt="..." />
+				<img src="https://via.placeholder.com/400x200" className="card-img-top" alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">{planet.name}</h5>
 					<p className="card-text">Population: {planets.population}</p>

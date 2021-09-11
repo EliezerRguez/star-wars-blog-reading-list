@@ -20,9 +20,9 @@ const PageCharacter = () => {
 
 	return (
 		<div className="container">
-			<div className="row">
+			<div className="row my-5">
 				<div className="col-12 col-sm-6">
-					<img src="..." />
+					<img src="https://via.placeholder.com/500x300" />
 				</div>
 				<div className="col-12 col-sm-6">
 					<h1>{person.name}</h1>
