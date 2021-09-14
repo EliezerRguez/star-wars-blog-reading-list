@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const CardVehicle = ({ ship }) => {
+	const { store, actions } = useContext(Context);
 	const [vehicle, setVehicle] = useState({});
 
 	async function getElement() {
@@ -25,10 +27,15 @@ const CardVehicle = ({ ship }) => {
 					<p className="card-text">Class: {vehicle.starship_class}</p>
 					<p className="card-text">Hyperdrive Rating: {vehicle.hyperdrive_rating}</p>
 
-					<a href="#" className="btn text-primary border-primary d-inline-block">
-						Learn more!
-					</a>
-					<a href="#" className="btn text-warning border-warning ml-4 d-inline-block">
+					<Link to={`/starships/${ship.uid}`}>
+						<button className="btn text-primary border-primary d-inline-block">Learn more!</button>
+					</Link>
+					<a
+						href="#"
+						onClick={() => {
+							actions.addFav(ship.name);
+						}}
+						className="btn text-warning border-warning ml-4 d-inline-block">
 						<i className="far fa-heart" />
 					</a>
 				</div>

@@ -5,6 +5,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import PageCharacter from "./component/PageCharacter";
 import PagePlanet from "./component/PagePlanet";
+import PageVehicles from "./component/PageVehicles";
 
 //create your first component
 const Layout = () => {
@@ -25,6 +26,9 @@ const Layout = () => {
 					</Route>
 					<Route exact path="/planet/:id">
 						<PagePlanet />
+					</Route>
+					<Route exact path="/starships/:id">
+						<PageVehicles />
 					</Route>
 					<Route>
 						<h1>Not found!</h1>

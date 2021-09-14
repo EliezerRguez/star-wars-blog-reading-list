@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const CardPlanet = ({ planet }) => {
+	const { store, actions } = useContext(Context);
 	const [planets, setPlanets] = useState({});
 
 	async function getElement() {
@@ -25,10 +27,15 @@ const CardPlanet = ({ planet }) => {
 					<p className="card-text">Population: {planets.population}</p>
 					<p className="card-text">Terrain: {planets.terrain}</p>
 
-					<Link to={`/people/${planets.uid}`}>
+					<Link to={`/planets/${planets.uid}`}>
 						<button className="btn text-primary border-primary d-inline-block">Learn more!</button>
 					</Link>
-					<a href="#" className="btn text-warning border-warning ml-4 d-inline-block">
+					<a
+						href="#"
+						onClick={() => {
+							actions.addFav(planet.name);
+						}}
+						className="btn text-warning border-warning ml-4 d-inline-block">
 						<i className="far fa-heart" />
 					</a>
 				</div>

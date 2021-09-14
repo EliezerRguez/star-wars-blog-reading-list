@@ -13,14 +13,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			favorites: []
+			favorites: [],
+			people: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
+			loadCharacters: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
@@ -41,6 +42,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFav: name => {
 				setStore({ favorites: [...getStore().favorites, name] });
+			},
+
+			deleteFavorite: favToRemove => {
+				const store = getStore();
+
+				const arr = store.favorites.filter(function(item) {
+					return item !== favToRemove;
+				});
+
+				setStore({ favorites: arr });
 			}
 		}
 	};

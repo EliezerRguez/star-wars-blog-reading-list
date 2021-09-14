@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const PageCharacter = () => {
+const PageVehicle = () => {
 	const params = useParams();
-	const [person, setPerson] = useState([]);
+	const [vehicle, setVehicle] = useState([]);
 
 	console.log(params);
 
-	async function getPerson() {
-		const response = await fetch(`https://www.swapi.tech/api/people/${params.id}`);
+	async function getVehicle() {
+		const response = await fetch(`https://www.swapi.tech/api/starships/${params.id}`);
 
 		const responseJson = await response.json();
-		setPerson(responseJson.result.properties);
+		setVehicle(responseJson.result.properties);
 	}
 
 	useEffect(() => {
-		getPerson();
+		getVehicle();
 	}, []);
 
 	return (
@@ -25,7 +25,7 @@ const PageCharacter = () => {
 					<img src="https://via.placeholder.com/500x300" />
 				</div>
 				<div className="col-12 col-sm-6">
-					<h1>{person.name}</h1>
+					<h1>{vehicle.name}</h1>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, mauris nec malesuada
 						commodo, erat ligula blandit sem, ac sagittis metus dolor vel leo. Maecenas mattis nibh vel
@@ -40,31 +40,31 @@ const PageCharacter = () => {
 			<div className="row text-center border-top border-danger pt-3">
 				<div className="col-2 text-danger">
 					<p classNmae="mb-2 font-weight-bold">Name:</p>
-					<span>{person.name}</span>
+					<span>{vehicle.name}</span>
 				</div>
 				<div className="col-2 text-danger">
-					<p classNmae="mb-2 font-weight-bold">Birth Year: </p>
-					<span>{person.birth_year}</span>
+					<p classNmae="mb-2 font-weight-bold">Class: </p>
+					<span>{vehicle.starship_class}</span>
 				</div>
 				<div className="col-2 text-danger">
-					<p classNmae="mb-2 font-weight-bold">Gender: </p>
-					<span>{person.gender}</span>
+					<p classNmae="mb-2 font-weight-bold">Model: </p>
+					<span>{vehicle.model}</span>
 				</div>
 				<div className="col-2 text-danger">
-					<p classNmae="mb-2 font-weight-bold">Height: </p>
-					<span>{person.height}</span>
+					<p classNmae="mb-2 font-weight-bold">Cost: </p>
+					<span>{vehicle.cost_in_credits}</span>
 				</div>
 				<div className="col-2 text-danger">
-					<p classNmae="mb-2 font-weight-bold">Skin Color: </p>
-					<span>{person.skin_color}</span>
+					<p classNmae="mb-2 font-weight-bold">Hyperdrive Rating </p>
+					<span>{vehicle.hyperdrive_rating}</span>
 				</div>
 				<div className="col-2 text-danger">
-					<p classNmae="mb-2 font-weight-bold">Eye Color: </p>
-					<span>{person.eye_color}</span>
+					<p classNmae="mb-2 font-weight-bold">Manufacturer: </p>
+					<span>{vehicle.manufacturer}</span>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default PageCharacter;
+export default PageVehicle;

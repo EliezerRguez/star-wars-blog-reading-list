@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const CardCharacter = ({ person }) => {
+	const { store, actions } = useContext(Context);
 	const [character, setCharacter] = useState({});
 
 	async function getElement() {
@@ -15,7 +17,7 @@ const CardCharacter = ({ person }) => {
 	useEffect(() => {
 		getElement();
 	}, []);
-
+	console.log(store.people);
 	return (
 		<div className="col-4" key={person.uid}>
 			<div className="card">
@@ -28,7 +30,12 @@ const CardCharacter = ({ person }) => {
 					<Link to={`/people/${person.uid}`}>
 						<button className="btn text-primary border-primary d-inline-block">Learn more!</button>
 					</Link>
-					<a href="#" className="btn text-warning border-warning ml-4 d-inline-block">
+					<a
+						href="#"
+						onClick={() => {
+							actions.addFav(person.name);
+						}}
+						className="btn text-warning border-warning ml-4 d-inline-block">
 						<i className="far fa-heart" />
 					</a>
 				</div>
