@@ -40,18 +40,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			addFav: name => {
-				setStore({ favorites: [...getStore().favorites, name] });
-			},
 
-			deleteFavorite: favToRemove => {
+			addFavorite: newFavorite => {
 				const store = getStore();
-
-				const arr = store.favorites.filter(function(item) {
-					return item !== favToRemove;
-				});
-
-				setStore({ favorites: arr });
+				let newfavorites = [...store.favorites, { name: newFavorite }];
+				getActions().setFavorites(newfavorites);
+			},
+			deleteFavorite: favoriteName => {
+				const store = getStore();
+				let favorites = [...store.favorites];
+				let newFavorites = favorites.filter(fav => fav.name != favoriteName);
+				getActions().setFavorites(newFavorites);
+			},
+			setFavorites: favorites => {
+				localStorage.setItem("favorites", JSON.stringify(favorites));
+				setStore({ favorites: favorites });
 			}
 		}
 	};

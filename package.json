@@ -78,6 +78,7 @@
 	},
 	"dependencies": {
 		"bootstrap": "^4.6.0",
+		"node": "^10.24.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-bootstrap": "^1.6.3",

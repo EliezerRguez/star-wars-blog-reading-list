@@ -14,6 +14,13 @@ const CardCharacter = ({ person }) => {
 		setCharacter(responseJson.result.properties);
 	}
 
+	function handleOnClick() {
+		let title = person.name;
+		if (store.favorites.findIndex(fav => fav.name == title) === -1) {
+			actions.addFavorite(title);
+		}
+	}
+
 	useEffect(() => {
 		getElement();
 	}, []);
@@ -30,12 +37,7 @@ const CardCharacter = ({ person }) => {
 					<Link to={`/people/${person.uid}`}>
 						<button className="btn text-primary border-primary d-inline-block">Learn more!</button>
 					</Link>
-					<a
-						href="#"
-						onClick={() => {
-							actions.addFav(person.name);
-						}}
-						className="btn text-warning border-warning ml-4 d-inline-block">
+					<a href="#" onClick={handleOnClick} className="btn text-warning border-warning ml-4 d-inline-block">
 						<i className="far fa-heart" />
 					</a>
 				</div>
