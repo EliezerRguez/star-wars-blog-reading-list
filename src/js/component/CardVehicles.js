@@ -14,6 +14,13 @@ const CardVehicle = ({ ship }) => {
 		setVehicle(responseJson.result.properties);
 	}
 
+	function handleOnClick() {
+		let title = ship.name;
+		if (store.favorites.findIndex(fav => fav.name == title) === -1) {
+			actions.addFavorite(title);
+		}
+	}
+
 	useEffect(() => {
 		getElement();
 	}, []);
@@ -30,12 +37,7 @@ const CardVehicle = ({ ship }) => {
 					<Link to={`/starships/${ship.uid}`}>
 						<button className="btn text-primary border-primary d-inline-block">Learn more!</button>
 					</Link>
-					<a
-						href="#"
-						onClick={() => {
-							actions.addFav(ship.name);
-						}}
-						className="btn text-warning border-warning ml-4 d-inline-block">
+					<a href="#" onClick={handleOnClick} className="btn text-warning border-warning ml-4 d-inline-block">
 						<i className="far fa-heart" />
 					</a>
 				</div>
