@@ -12,7 +12,7 @@ export const Navbar = () => {
 		<div className="bg-light">
 			<nav className="navbar navbar-light bg-light mb-3 container ">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span className="navbar-brand mb-0 h1">STAR WARS</span>
 				</Link>
 				<div className="ml-auto">
 					<DropdownButton id="dropdown-item-button-Warning " title={" Favorite " + store.favorites.length}>
